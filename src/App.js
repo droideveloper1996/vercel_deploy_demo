@@ -18,3 +18,6 @@ function App() {
 }
 
 export default App;
+
+//It can take some time to update DNS
+//LEts create setup from react app
