@@ -37,7 +37,14 @@ const FeedActivity = () => {
       <FeedToolbar />
       <FeedInput />
       {data?.feedData?.map((feed) => {
-        return <FeedComponent profilePic={feed.profilePic} />;
+        return (
+          <FeedComponent
+            profilePic={feed.profilePic}
+            feed={feed.post.title}
+            image={feed.post.image}
+            isHost={feed.type === "host"}
+          />
+        );
       })}
     </div>
   );

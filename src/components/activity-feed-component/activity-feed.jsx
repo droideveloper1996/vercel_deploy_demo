@@ -1,7 +1,7 @@
-import Stylesheet from "reactjs-stylesheet";
 import { ReactionBarSelector } from "@charkour/react-reactions";
 import { useState } from "react";
 import Switch from "react-ios-switch";
+import { styles } from "./styles";
 export const ActivityFeed = () => {};
 export const FeedToolbar = () => {
   return (
@@ -34,22 +34,39 @@ export const FeedToolbar = () => {
   );
 };
 
-export const FeedComponent = ({ inputMode = false, profilePic }) => {
+export const FeedComponent = ({
+  inputMode = false,
+  profilePic,
+  isHost,
+  feed,
+  image,
+  setCancel,
+  setOkay,
+  inputListner,
+}) => {
   const [showSmilie, setShowSmilie] = useState(false);
   return (
-    <div style={styles.container}>
+    <div style={inputMode === false ? styles.container : styles.rowTxt}>
       <div style={styles.row}>
         <img src={profilePic} alt="" style={styles.profilePic} />
-        {inputMode == false ? (
+        {inputMode === false ? (
           <div style={styles.column}>
             <p style={styles.feedMessage}>
               <span style={styles.feedTitle}>
-                New message from HOST Bonnie Green:{" "}
+                New message from {isHost === true && "HOST"} Bonnie Green:
               </span>
-              Welcome to the Spring Berries & Bubbles Event. I am so excited to
-              talk and see all of the intelligent and wonderful women that
-              attend.
+              {feed}
             </p>
+            {image?.map?.((img) => {
+              return (
+                <img
+                  src={require(`../../assets/party1.png`)}
+                  width={"100%"}
+                  height={200}
+                  alt=""
+                />
+              );
+            })}
             <div style={styles.spaceBetween}>
               <p style={styles.feedTime}>44 minutes ago</p>
               <img
@@ -84,11 +101,31 @@ export const FeedComponent = ({ inputMode = false, profilePic }) => {
           <div style={styles.textArea}>
             <textarea
               name=""
+              onChange={inputListner}
               id=""
-              rows="10"
+              rows="5"
               width={"100%"}
+              placeholder="Type here"
               style={styles.textArea}
             />
+            <div style={styles.row}>
+              <img
+                onClick={setOkay}
+                src={require("../../assets/accept.png")}
+                alt=""
+                style={{ marginRight: 20 }}
+                width={30}
+                height={30}
+              />
+              <img
+                src={require("../../assets/remove.png")}
+                alt=""
+                onClick={setCancel}
+                width={30}
+                height={30}
+              />
+            </div>
+            '
           </div>
         )}
       </div>
@@ -99,87 +136,10 @@ export const FeedComponent = ({ inputMode = false, profilePic }) => {
 export const FeedInput = () => {
   return (
     <div>
-      <FeedComponent inputMode={true} profilePic={"profilePic"} />
+      <FeedComponent
+        inputMode={true}
+        profilePic={"https://randomuser.me/api/portraits/women/75.jpg"}
+      />
     </div>
   );
 };
-
-const styles = Stylesheet.create({
-  container: {
-    height: "auto",
-    width: 420,
-    padding: 20,
-    marginTop: 10,
-    background: "white",
-  },
-  row: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  column: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  profilePic: {
-    width: 50,
-    marginRight: 15,
-    marginTop: 15,
-    height: 50,
-    background: "red",
-    borderRadius: 35,
-  },
-  feedTitle: {
-    fontSize: 15,
-    color: "black",
-  },
-  feedMessage: {
-    fontSize: 15,
-    color: "grey",
-  },
-  feedSubTitle: {
-    fontWeight: 700,
-    fontSize: 15,
-  },
-  feedTime: {
-    fontSize: 15,
-    color: "blue",
-    margin: 0,
-    padding: 0,
-    fontWeight: 700,
-  },
-  spaceBetween: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-
-  FeedToolbar: {
-    height: 30,
-    backgroundColor: "rgba(0, 0, 0, 0.9999)",
-    opacity: 0.7,
-    padding: 15,
-    justifyContent: "space-between",
-    display: "flex",
-    alignItems: "center",
-  },
-  toolbarTitle: {
-    alignSelf: "center",
-    color: "#fff",
-    fontSize: 20,
-  },
-  addMedia: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "center",
-    color: "#fff",
-    fontSize: 14,
-    marginRight: 25,
-  },
-
-  textArea: {
-    width: "100%",
-    height: "auto",
-    border: "0px",
-  },
-});
