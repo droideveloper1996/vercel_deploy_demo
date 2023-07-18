@@ -1,4 +1,12 @@
+import {
+  FeedComponent,
+  FeedInput,
+  FeedToolbar,
+} from "./activity-feed-component/activity-feed";
+import data from "./activity-feed-component/mock-response.json";
+
 export const Home = () => {
+  console.log(data);
   return (
     <div
       style={{
@@ -14,7 +22,23 @@ export const Home = () => {
         color: "wheat",
       }}
     >
-      <div>Home Component</div>
+      <FeedActivity />
+    </div>
+  );
+};
+
+const FeedActivity = () => {
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+      }}
+    >
+      <FeedToolbar />
+      <FeedInput />
+      {data?.feedData?.map((feed) => {
+        return <FeedComponent profilePic={feed.profilePic} />;
+      })}
     </div>
   );
 };

@@ -1,0 +1,33 @@
+{
+  "feedData": [
+    {
+      "userId": "userId1",
+      "profilePic": "https://randomuser.me/api/portraits/men/75.jpg",
+      "userName": "userName1",
+      "type": "host",
+      "reactions": [],
+      "post": {
+        "timestamp": "",
+        "image": [],
+        "title": "Welcome to the Spring Berries & Bubbles Event. I am so excited to talk and see all of the intelligent and wonderful women that attend."
+      }
+    },
+
+    {
+      "userId": "userId2",
+      "profilePic": "https://randomuser.me/api/portraits/women/75.jpg",
+      "userName": "userName2",
+      "type": "guest",
+      "reactions": [],
+      "post": {
+        "timestamp": "",
+        "image": [
+          {
+            "url": "../../assets/party1.png"
+          }
+        ],
+        "title": "Hey, what's up? All set for the presentation?"
+      }
+    }
+  ]
+}

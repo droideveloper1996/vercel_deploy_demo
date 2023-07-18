@@ -21,3 +21,5 @@ export default App;
 
 //It can take some time to update DNS
 //LEts create setup from react app
+//Lets deploy this on vercel
+//subdomain is ready
